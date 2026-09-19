@@ -33,17 +33,7 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 
 DEPENDS = "tegra-libraries-multimedia"
 
-def extract_basever(d):
-    ver = d.getVar('PV').split('-')[0]
-    components = ver.split('.')
-    return '.'.join(components[:3])
-
-def extract_majver(d):
-    ver = d.getVar('PV').split('-')[0]
-    return ver.split('.')[0]
-
-BASEVER = "${@extract_basever(d)}"
-MAJVER = "${@extract_majver(d)}"
+require tensorrt-version.inc
 
 S = "${UNPACKDIR}/tensorrt"
 
@@ -108,3 +98,6 @@ TENSORRT_BUILDER_RESOURCE_ARCH:tegra234 = "86"
 RDEPENDS:${PN} += "${PN}-builder-resource-sm${TENSORRT_BUILDER_RESOURCE_ARCH}"
 
 PACKAGE_ARCH = "${SOC_FAMILY_PKGARCH}"
+
+CVE_PRODUCT = "nvidia:tensorrt"
+CVE_VERSION = "${BASEVER}"

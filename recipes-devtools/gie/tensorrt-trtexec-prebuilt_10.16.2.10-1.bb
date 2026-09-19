@@ -21,6 +21,8 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 
 LIC_FILES_CHKSUM = "file://usr/share/doc/libnvinfer-bin/copyright;md5=85d3e8c5b94689733a8f3c790762d581"
 
+require tensorrt-version.inc
+
 S = "${UNPACKDIR}/tensorrt"
 
 DEPENDS = "cuda-cudart cudnn tensorrt-core tensorrt-plugins libcublas"
@@ -51,3 +53,6 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_SYSROOT_STRIP = "1"
 
 PACKAGE_ARCH = "${TEGRA_PKGARCH}"
+
+CVE_PRODUCT = "nvidia:tensorrt"
+CVE_VERSION = "${BASEVER}"
